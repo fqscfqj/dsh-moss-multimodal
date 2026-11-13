@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "MOSS multimodal",
+    "description": "Open MOSS workbench from the sidebar and save an API key in its settings. Includes images, single/multi-speaker speech, voice cloning/design, transcription, image/video understanding, and uploads. Inputs are sent to the configured MOSS API; keys stay in DSH credentials. Uses URL results and audio task polling; realtime video and PCM/SSE playback are not included.",
+    "detail": "docs/DETAIL.md"
+  }
+}

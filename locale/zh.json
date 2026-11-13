@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "MOSS 多模态",
+    "description": "侧栏打开 MOSS 工作台，在设置页保存 API Key。支持图像生成、单/多人语音、音色克隆与设计、音频转写、图像/视频理解和文件上传。输入素材发送至配置的 MOSS API；密钥由 DSH 凭据服务保存，不进入浏览器。使用同步 URL 结果或异步任务轮询；不含实时视频与 PCM/SSE 播放。",
+    "detail": "docs/DETAIL.zh.md"
+  }
+}
