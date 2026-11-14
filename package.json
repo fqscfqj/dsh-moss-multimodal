@@ -1,13 +1,26 @@
 {
   "name": "dsh-moss-multimodal",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "MOSS multimodal workbench for image, speech, voice, transcription and visual understanding.",
   "license": "MIT",
-  "repository": { "type": "git", "url": "https://github.com/fqscfqj/dsh-moss-multimodal.git" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fqscfqj/dsh-moss-multimodal.git"
+  },
   "homepage": "https://github.com/fqscfqj/dsh-moss-multimodal#readme",
-  "bugs": { "url": "https://github.com/fqscfqj/dsh-moss-multimodal/issues" },
-  "keywords": ["dsh", "deepseek-harness", "plugin", "moss", "multimodal", "image-generation", "speech"],
+  "bugs": {
+    "url": "https://github.com/fqscfqj/dsh-moss-multimodal/issues"
+  },
+  "keywords": [
+    "dsh",
+    "deepseek-harness",
+    "plugin",
+    "moss",
+    "multimodal",
+    "image-generation",
+    "speech"
+  ],
   "dependencies": {
     "@deepseek-ai/dsh-tools": "0.2.2-rc.2",
     "@deepseek-ai/schemastery": "3.19.0",
@@ -19,14 +32,31 @@
     "./locale/*.json": "./locale/*.json",
     "./icon": "./icon.svg"
   },
-  "engines": { "node": ">=22.19.0", "dsh": ">=0.2.2-rc.2 <0.3.0-0" },
+  "engines": {
+    "node": ">=22.19.0",
+    "dsh": ">=0.2.2-rc.2 <0.3.0-0"
+  },
   "scripts": {
     "check": "node --check index.js && node --check client.js && node --check moss-api.js",
     "test": "node --test test/*.test.js"
   },
-  "files": ["index.js", "client.js", "moss-api.js", "features.js", "assets.js", "cordis.patch.yml", "locale/*.json", "docs", "icon.svg", "README.md", "LICENSE"],
+  "files": [
+    "index.js",
+    "client.js",
+    "moss-api.js",
+    "features.js",
+    "assets.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "docs",
+    "icon.svg",
+    "README.md",
+    "LICENSE"
+  ],
   "dsh": {
-    "bundle": { "patch": "./cordis.patch.yml" },
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
     "client": {
       "platform": "web",
       "immediately": true,

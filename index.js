@@ -457,6 +457,11 @@ async function removeAsset(options, id) {
     return options.assets.remove(id)
 }
 
+async function removeAssets(options, ids) {
+    requireFeature(options, 'assets')
+    return options.assets.removeMany(ids)
+}
+
 async function listVoices(ctx, options, query = new URLSearchParams()) {
     requireFeature(options, 'voices')
     const suffix = query.toString() ? `?${query.toString()}` : ''
@@ -565,6 +570,7 @@ export function apply(ctx, config) {
                     offset: query.has('offset') ? Number(query.get('offset')) : 0,
                     limit: query.has('limit') ? Number(query.get('limit')) : 40,
                 })
+                if (Array.isArray(body.ids)) return removeAssets(current, body.ids)
                 if (typeof body.id !== 'string' || !body.id.trim()) throw Object.assign(new Error('缺少资产 ID。'), { status: 400 })
                 return removeAsset(current, body.id)
             }

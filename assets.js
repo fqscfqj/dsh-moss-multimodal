@@ -292,6 +292,22 @@ export function createAssetLibrary(storageDomain) {
         })
     }
 
+    const removeMany = (ids) => {
+        if (!Array.isArray(ids) || !ids.length || ids.length > 100) return Promise.reject(invalidInput('ids must be a non-empty array with at most 100 items'))
+        const normalized = [...new Set(ids.map((id) => typeof id === 'string' ? id.trim() : ''))].filter(Boolean)
+        if (normalized.length !== ids.length) return Promise.reject(invalidInput('ids must contain non-empty strings'))
+        return enqueue(async () => {
+            let removed = 0
+            for (const id of normalized) {
+                const existing = await getRecord(id)
+                if (!existing) continue
+                await table.delete(id)
+                removed++
+            }
+            return { removed, requested: normalized.length }
+        })
+    }
+
     const close = () => {
         if (closePromise) return closePromise
         closing = true
@@ -306,7 +322,7 @@ export function createAssetLibrary(storageDomain) {
         return closePromise
     }
 
-    return Object.freeze({ record, list, remove, close })
+    return Object.freeze({ record, list, remove, removeMany, close })
 }
 
 export { AssetSchema }

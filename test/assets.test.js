@@ -125,6 +125,16 @@ test('list filters, paginates, sorts newest first, and remove only deletes the l
     await library.close()
 })
 
+test('removeMany deletes only existing local records in one serialized operation', async () => {
+    const storage = fakeStorage()
+    const library = createAssetLibrary(storage)
+    const first = await library.record('image', { title: 'first' }, { url: 'https://cdn.example.com/first-batch.png' })
+    const second = await library.record('speech', { title: 'second' }, { url: 'https://cdn.example.com/second-batch.mp3' })
+    assert.deepEqual(await library.removeMany([first.id, second.id, 'missing']), { removed: 2, requested: 3 })
+    assert.equal((await library.list()).total, 0)
+    await assert.rejects(library.removeMany([]), (error) => error.code === 'invalid_input')
+    await library.close()
+})
 test('writes stay serialized and a failed write does not poison later writes', async () => {
     const storage = fakeStorage()
     storage.state.failNextPut = true

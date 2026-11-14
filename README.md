@@ -19,7 +19,7 @@
 | 音频 / 图片 / 视频上传 | 媒体输入 | `moss_file_upload` |
 | 异步任务查询 | 任务查询 | `moss_task_get` |
 | 默认参数 / 连通测试 | MOSS 设置 | `moss_settings` |
-| 本地资产索引 | 资产浏览 | `moss_assets_list`, `moss_assets_remove` |
+| 本地资产索引与批量清理 | 资产浏览（搜索、筛选、多选、批量删除） | `moss_assets_list`, `moss_assets_remove` |
 
 默认使用官方 `https://api.mosi.cn`，接口契约依据 [MOSS API 文档](https://platform.moss.cn/docs)。图片、语音、转写和视觉模型使用 MOSS 文档公开的固定快照模型。
 
@@ -41,6 +41,21 @@ dsh plugin add github:fqscfqj/dsh-moss-multimodal
 github:fqscfqj/dsh-moss-multimodal
 ```
 
+### npm 包
+
+发布后可以直接使用 npm 包安装当前插件：
+
+```bash
+dsh plugin add dsh-moss-multimodal@latest
+```
+
+维护者发布新版本前执行：
+
+```bash
+npm login
+npm publish --access public
+```
+
 ### 本地开发目录
 
 ```bash
@@ -54,7 +69,7 @@ dsh plugin add .
 
 ```bash
 pnpm pack
-dsh plugin add ./dsh-moss-multimodal-1.0.0.tgz
+dsh plugin add ./dsh-moss-multimodal-1.0.1.tgz
 ```
 
 安装后：
@@ -65,6 +80,12 @@ dsh plugin add ./dsh-moss-multimodal-1.0.0.tgz
 4. 语音合成前，从音色列表选择 `voice_id`，或先克隆 / 设计音色。
 
 本插件是 DSH 动态模块，不需要、也不应该另起 Web 服务。
+
+## 1.0.1 更新
+
+- 工作台页面升级为更清晰的分段导航、状态头部和卡片式区块布局。
+- 资产浏览支持关键词搜索、类型筛选、当前页多选、全选、清除选择和批量删除。
+- 批量删除只清理本地资产索引，并保留删除确认与分页刷新反馈。
 
 ## 兼容性
 
@@ -120,7 +141,7 @@ A MOSS multimodal workbench, settings page, and Agent tools for [DeepSeek Harnes
 | Audio / image / video upload | Media input | `moss_file_upload` |
 | Async task polling | Task query | `moss_task_get` |
 | Defaults / connectivity probe | MOSS settings | `moss_settings` |
-| Local asset index | Asset browser | `moss_assets_list`, `moss_assets_remove` |
+| Local asset index and bulk cleanup | Asset browser (search, filter, multi-select, bulk delete) | `moss_assets_list`, `moss_assets_remove` |
 
 The default API endpoint is `https://api.mosi.cn`; API behavior follows the [MOSS API documentation](https://platform.moss.cn/docs). Image, speech, transcription, and vision features use the documented fixed-snapshot models.
 
@@ -142,6 +163,21 @@ You can also paste this spec into **Plugins → Add plugin**:
 github:fqscfqj/dsh-moss-multimodal
 ```
 
+### npm package
+
+After publication, install the plugin from npm with:
+
+```bash
+dsh plugin add dsh-moss-multimodal@latest
+```
+
+Before publishing a new release, run:
+
+```bash
+npm login
+npm publish --access public
+```
+
 ### Local development checkout
 
 ```bash
@@ -155,7 +191,7 @@ dsh plugin add .
 
 ```bash
 pnpm pack
-dsh plugin add ./dsh-moss-multimodal-1.0.0.tgz
+dsh plugin add ./dsh-moss-multimodal-1.0.1.tgz
 ```
 
 After installation:
@@ -166,6 +202,12 @@ After installation:
 4. Select a `voice_id` from the voice catalog before speech generation, or clone/design a voice first.
 
 This is a DSH dynamic module. It does not require a separate web server.
+
+## 1.0.1 changes
+
+- Refined the workbench with clearer segmented navigation, status header, and card-based sections.
+- Added asset search, type filtering, current-page multi-select, select all, clear selection, and bulk delete.
+- Bulk cleanup only removes local asset indexes and keeps confirmation and pagination feedback.
 
 ## Compatibility
 
