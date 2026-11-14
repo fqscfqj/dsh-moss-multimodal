@@ -30,10 +30,10 @@
 需要已安装并登录 DSH。执行：
 
 ```bash
-dsh plugin add github:fqscfqj/dsh-moss-multimodal
+dsh plugin --profile desktop add github:fqscfqj/dsh-moss-multimodal
 ```
 
-该仓库根目录包含 DSH bundle manifest（`package.json` 中的 `dsh.bundle`），DSH 会把插件加入当前 profile。安装完成后重载 DSH GUI，并在侧栏打开 **MOSS 多模态**。
+该仓库根目录包含 DSH bundle manifest（`package.json` 中的 `dsh.bundle`）。桌面版 CLI 安装依赖后，还需在 `~/.dsh/profiles/desktop/package.json` 的 `dsh.profile.bundles` 数组中加入 `"dsh-moss-multimodal"`，然后启动 DSH，在侧栏打开 **MOSS 多模态**。GUI 安装会自动完成 bundle 注册。
 
 也可以在 DSH 的 **Plugins → Add plugin** 中粘贴：
 
@@ -46,7 +46,7 @@ github:fqscfqj/dsh-moss-multimodal
 发布后可以直接使用 npm 包安装当前插件：
 
 ```bash
-dsh plugin add dsh-moss-multimodal@latest
+dsh plugin --profile desktop add dsh-moss-multimodal@latest
 ```
 
 维护者发布新版本前执行：
@@ -62,15 +62,18 @@ npm publish --access public
 pnpm install --ignore-scripts
 pnpm run check
 pnpm test
-dsh plugin add .
+pnpm pack
+dsh plugin --profile desktop add ./dsh-moss-multimodal-1.0.5.tgz
 ```
 
 ### 安装打包文件
 
 ```bash
 pnpm pack
-dsh plugin add ./dsh-moss-multimodal-1.0.1.tgz
+dsh plugin --profile desktop add ./dsh-moss-multimodal-1.0.5.tgz
 ```
+
+在 Windows 上通过命令行安装前，先完全退出 DSH。请安装 `pnpm pack` 生成的 `.tgz`，避免将带有 `node_modules` 的开发目录复制到插件目录。非桌面版请将 `--profile desktop` 换成对应的 profile 名称。
 
 安装后：
 
@@ -152,10 +155,10 @@ The default API endpoint is `https://api.mosi.cn`; API behavior follows the [MOS
 With DSH installed and authenticated, run:
 
 ```bash
-dsh plugin add github:fqscfqj/dsh-moss-multimodal
+dsh plugin --profile desktop add github:fqscfqj/dsh-moss-multimodal
 ```
 
-The repository root contains a DSH bundle manifest (`dsh.bundle` in `package.json`), so DSH adds the plugin to the current profile. Reload the DSH GUI and open **MOSS Multimodal** from the sidebar.
+The repository root contains a DSH bundle manifest (`dsh.bundle` in `package.json`). After installing dependencies through the Desktop CLI, also add `"dsh-moss-multimodal"` to `dsh.profile.bundles` in `~/.dsh/profiles/desktop/package.json`. Start DSH and open **MOSS Multimodal** from the sidebar. GUI installation registers the bundle automatically.
 
 You can also paste this spec into **Plugins → Add plugin**:
 
@@ -168,7 +171,7 @@ github:fqscfqj/dsh-moss-multimodal
 After publication, install the plugin from npm with:
 
 ```bash
-dsh plugin add dsh-moss-multimodal@latest
+dsh plugin --profile desktop add dsh-moss-multimodal@latest
 ```
 
 Before publishing a new release, run:
@@ -184,15 +187,18 @@ npm publish --access public
 pnpm install --ignore-scripts
 pnpm run check
 pnpm test
-dsh plugin add .
+pnpm pack
+dsh plugin --profile desktop add ./dsh-moss-multimodal-1.0.5.tgz
 ```
 
 ### Install a packed archive
 
 ```bash
 pnpm pack
-dsh plugin add ./dsh-moss-multimodal-1.0.1.tgz
+dsh plugin --profile desktop add ./dsh-moss-multimodal-1.0.5.tgz
 ```
+
+On Windows, fully quit DSH before installing through the CLI. Install the `.tgz` produced by `pnpm pack` instead of copying a development directory containing `node_modules`. For other surfaces, replace `--profile desktop` with the appropriate profile name.
 
 After installation:
 
